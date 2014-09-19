@@ -37,7 +37,9 @@
 
 
   function DataFactory() {
-    var api = {}, _data = {
+    var api = {}, 
+    
+        _data = { // some data ...
     author: 'Joel Pablo',
     company:'WorkETC',
     employees : {
@@ -47,6 +49,7 @@
         }
     }
 
+    // returns this factory data
     api.getData = function() {
       return _data;
     }
