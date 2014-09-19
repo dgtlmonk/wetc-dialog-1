@@ -1,0 +1,21 @@
+{
+  "name": "Angular Dialog R&D",
+  "version": "0.0.0",
+  "authors": [
+    "Joel Pablo <joel.pablo@digitalmonkstudio.com>"
+  ],
+  "description": "An AngularJS Dialog R&D based on http://likeastore.github.io/ngDialog/",
+  "main": "dialog.html",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "./vendor/",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "ngDialog": "~0.2.14"
+  }
+}

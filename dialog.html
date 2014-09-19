@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+ <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="./vendor/ngDialog/css/ngDialog-theme-default.css" type="text/css" media="screen" title="no title" charset="utf-8">
+ </head>
+<body ng-app='myDialogTest'>
+
+  <!-- // DIALOG CONTENT TEMPLATE Note: this can be attached via ng-include -->
+  <script type='text/ng-template' id='dialog-about'>
+    --- popup content (dialog about) ---  
+      {{ data.author}}
+    <ul>
+      <li ng-repeat="names in data.employees">
+          {{ names.name }}
+      </li>
+    </ul>
+  </script>
+ <!-- // DIALOG CONTENT TEMPLATE  -->
+
+  <div ng-controller='dgCtrl as ctrl'>
+    template string 
+    <button ng-click="ctrl.openDialog()">
+            Open Dialog
+    </button>
+    
+  </div>
+  
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.21/angular.min.js"></script>
+<script src='./vendor/ngDialog/js/ngDialog.js'></script>
+
+<script>
+
+
+  function DataFactory() {
+    var api = {}, _data = {
+    author: 'Joel Pablo',
+    company:'WorkETC',
+    employees : {
+            1: { name:'Joel'},
+            2:  { name: 'Jayson'},
+            3:  { name: 'Janice'},
+        }
+    }
+
+    api.getData = function() {
+      return _data;
+    }
+
+    return api;
+  }
+
+ // ng module ----
+  angular.module('myDialogTest',['ngDialog'])
+     .factory('DataFactory', DataFactory)
+     .controller('dgCtrl', function (ngDialog) {
+       this.openDialog = function () {
+             console.log('opening dialog ...');
+             ngDialog.open({
+               template : 'dialog-about',
+               controller : 'dataSourceCtrl'
+
+             });
+           } // this.openDialog
+       })
+     .controller('dataSourceCtrl', ['$scope', 'DataFactory' , function ($scope, DataFactory) {
+           $scope.data = DataFactory.getData();
+     }])
+</script>
+</body>
+</html>
